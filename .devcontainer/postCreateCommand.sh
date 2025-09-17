@@ -34,11 +34,9 @@ pip install opencv-python numpy tqdm matplotlib seaborn pandas pillow scikit-ima
 pip install jupyter jupyterlab notebook ipywidgets
 pip install black isort flake8 pytest pytest-cov
 
-# Install the package in development mode if setup.py exists
-if [ -f "setup.py" ]; then
-    echo "📦 Installing package in development mode..."
-    pip install -e .
-fi
+# Install the package in development mode
+echo "📦 Installing package in development mode..."
+pip install -e .
 
 # Configure Jupyter
 echo "⚙️ Configuring Jupyter..."

@@ -179,7 +179,7 @@ cv-remove-bg/
 ├── background_removal.ipynb   # Jupyter notebook
 ├── test_setup.py             # Environment test script
 ├── requirements.txt           # Python dependencies
-├── setup.py                   # Package setup script
+├── pyproject.toml             # Modern Python package configuration
 ├── .devcontainer/            # Devcontainer configuration
 │   ├── devcontainer.json     # Devcontainer settings
 │   └── postCreateCommand.sh  # Post-creation setup script
