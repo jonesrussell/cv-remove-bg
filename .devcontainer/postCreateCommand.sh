@@ -9,17 +9,11 @@ cd /workspaces/cv-remove-bg
 # Create necessary directories if they don't exist
 mkdir -p images output
 
-# Install the package in development mode
-echo "📦 Installing package in development mode..."
-pip install -e .
-
-# Install additional development dependencies
-echo "🛠️ Installing development dependencies..."
-pip install black isort flake8 pytest pytest-cov pre-commit
-
-# Install Jupyter extensions
-echo "📓 Setting up Jupyter environment..."
-pip install jupyter jupyterlab notebook ipywidgets
+# Install the package in development mode if setup.py exists
+if [ -f "setup.py" ]; then
+    echo "📦 Installing package in development mode..."
+    pip install -e .
+fi
 
 # Configure Jupyter
 echo "⚙️ Configuring Jupyter..."
@@ -36,6 +30,14 @@ c.ServerApp.token = ''
 c.ServerApp.password = ''
 c.ServerApp.notebook_dir = '/workspaces/cv-remove-bg'
 EOF
+
+# Install OpenCV and other dependencies
+echo "📦 Installing OpenCV and dependencies..."
+pip install opencv-python numpy tqdm matplotlib seaborn pandas pillow scikit-image scipy
+
+# Install Jupyter extensions
+echo "📓 Installing Jupyter extensions..."
+pip install jupyter jupyterlab notebook ipywidgets
 
 # Create a simple test script
 cat > test_setup.py << 'EOF'

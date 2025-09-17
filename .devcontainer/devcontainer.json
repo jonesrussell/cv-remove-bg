@@ -1,9 +1,6 @@
 {
-  "name": "Background Removal with OpenCV",
-  "build": {
-    "dockerfile": "Dockerfile",
-    "context": "."
-  },
+  "name": "Background Removal with OpenCV (Simple)",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -17,11 +14,7 @@
         "ms-python.flake8",
         "ms-vscode.vscode-json",
         "redhat.vscode-yaml",
-        "ms-vscode.vscode-markdown",
-        "ms-vscode.hexeditor",
-        "ms-vscode.vscode-github-pullrequest",
-        "github.copilot",
-        "github.copilot-chat"
+        "ms-vscode.vscode-markdown"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",
@@ -64,14 +57,18 @@
       "onAutoForward": "notify"
     }
   },
-  "postCreateCommand": "pip install -e . && jupyter lab --generate-config",
+  "postCreateCommand": "bash .devcontainer/postCreateCommand.sh",
   "remoteUser": "vscode",
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {}
-  },
-  "mounts": [
-    "source=${localWorkspaceFolder}/images,target=/workspaces/cv-remove-bg/images,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/output,target=/workspaces/cv-remove-bg/output,type=bind,consistency=cached"
-  ]
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": false,
+      "configureZshAsDefaultShell": false,
+      "installOhMyZsh": false,
+      "upgradePackages": false,
+      "username": "vscode",
+      "uid": "1000",
+      "gid": "1000"
+    }
+  }
 }

@@ -33,6 +33,7 @@ RUN apt-get update && apt-get install -y \
     nano \
     htop \
     tree \
+    sudo \
     && rm -rf /var/lib/apt/lists/*
 
 # Create a non-root user
@@ -42,14 +43,8 @@ ARG USER_GID=$USER_UID
 
 RUN groupadd --gid $USER_GID $USERNAME \
     && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
-    && apt-get update \
-    && apt-get install -y sudo \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
-    && chmod 0440 /etc/sudoers.d/$USERNAME \
-    && rm -rf /var/lib/apt/lists/*
-
-# Switch to the non-root user
-USER $USERNAME
+    && chmod 0440 /etc/sudoers.d/$USERNAME
 
 # Set working directory
 WORKDIR /workspaces/cv-remove-bg
@@ -57,7 +52,7 @@ WORKDIR /workspaces/cv-remove-bg
 # Copy requirements first for better caching
 COPY requirements.txt .
 
-# Install Python packages
+# Install Python packages as root first
 RUN pip install --upgrade pip \
     && pip install -r requirements.txt \
     && pip install \
@@ -70,19 +65,20 @@ RUN pip install --upgrade pip \
         pandas \
         pillow \
         scikit-image \
-        scipy
+        scipy \
+        black \
+        isort \
+        flake8 \
+        pytest \
+        pytest-cov \
+        pre-commit
 
-# Install additional development tools
-RUN pip install \
-    black \
-    isort \
-    flake8 \
-    pytest \
-    pytest-cov \
-    pre-commit
+# Create necessary directories and set permissions
+RUN mkdir -p images output \
+    && chown -R $USERNAME:$USERNAME /workspaces/cv-remove-bg
 
-# Create necessary directories
-RUN mkdir -p images output
+# Switch to the non-root user
+USER $USERNAME
 
 # Set default shell
 SHELL ["/bin/bash", "-c"]
