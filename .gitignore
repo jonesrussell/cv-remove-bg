@@ -155,3 +155,4 @@ Thumbs.db
 
 # Devcontainer
 .devcontainer/postCreateCommand.sh.log
+*.backup

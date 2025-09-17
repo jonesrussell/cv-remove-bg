@@ -1,9 +1,6 @@
 {
-  "name": "Background Removal with OpenCV (Simple)",
-  "build": {
-    "dockerfile": "Dockerfile",
-    "context": ".."
-  },
+  "name": "Background Removal with OpenCV",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -25,14 +22,8 @@
         "python.linting.flake8Enabled": true,
         "python.linting.pylintEnabled": false,
         "python.formatting.provider": "black",
-        "python.formatting.blackArgs": [
-          "--line-length",
-          "88"
-        ],
-        "python.sortImports.args": [
-          "--profile",
-          "black"
-        ],
+        "python.formatting.blackArgs": ["--line-length", "88"],
+        "python.sortImports.args": ["--profile", "black"],
         "editor.formatOnSave": true,
         "editor.codeActionsOnSave": {
           "source.organizeImports": true
@@ -51,11 +42,7 @@
       }
     }
   },
-  "forwardPorts": [
-    8888,
-    8889,
-    8890
-  ],
+  "forwardPorts": [8888, 8889, 8890],
   "portsAttributes": {
     "8888": {
       "label": "Jupyter Notebook",

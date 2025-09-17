@@ -9,6 +9,31 @@ cd /workspaces/cv-remove-bg
 # Create necessary directories if they don't exist
 mkdir -p images output
 
+# Install system dependencies for OpenCV
+echo "🔧 Installing system dependencies..."
+sudo apt-get update && sudo apt-get install -y \
+    libgl1-mesa-glx \
+    libgl1-mesa-dri \
+    libx11-6 \
+    libgthread-2.0-0 \
+    libgtk-3-0 \
+    libgdk-pixbuf2.0-0 \
+    libxss1 \
+    libgconf-2-4 \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender-dev \
+    libgomp1 \
+    && sudo rm -rf /var/lib/apt/lists/*
+
+# Install Python packages
+echo "📦 Installing Python packages..."
+pip install --upgrade pip
+pip install opencv-python numpy tqdm matplotlib seaborn pandas pillow scikit-image scipy
+pip install jupyter jupyterlab notebook ipywidgets
+pip install black isort flake8 pytest pytest-cov
+
 # Install the package in development mode if setup.py exists
 if [ -f "setup.py" ]; then
     echo "📦 Installing package in development mode..."
@@ -30,27 +55,6 @@ c.ServerApp.token = ''
 c.ServerApp.password = ''
 c.ServerApp.notebook_dir = '/workspaces/cv-remove-bg'
 EOF
-
-# Install system dependencies for OpenGL (fallback)
-echo "🔧 Installing OpenGL system dependencies..."
-sudo apt-get update && sudo apt-get install -y \
-    libgl1-mesa-glx \
-    libgl1-mesa-dri \
-    libx11-6 \
-    libgthread-2.0-0 \
-    libgtk-3-0 \
-    libgdk-pixbuf2.0-0 \
-    libxss1 \
-    libgconf-2-4 \
-    && sudo rm -rf /var/lib/apt/lists/*
-
-# Install OpenCV and other dependencies
-echo "📦 Installing OpenCV and dependencies..."
-pip install opencv-python-headless numpy tqdm matplotlib seaborn pandas pillow scikit-image scipy
-
-# Install Jupyter extensions
-echo "📓 Installing Jupyter extensions..."
-pip install jupyter jupyterlab notebook ipywidgets
 
 # Create a simple test script
 cat > test_setup.py << 'EOF'
