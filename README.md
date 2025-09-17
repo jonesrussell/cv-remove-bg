@@ -96,6 +96,11 @@ flake8 .
 - **Jupyter Notebook**: http://localhost:8889
 - **Custom Port**: http://localhost:8890
 
+#### File Access
+- **Your Pictures**: `/home/vscode/Pictures` (mounted from `$HOME/Pictures`)
+- **Project Images**: `/workspaces/cv-remove-bg/images/`
+- **Output Results**: `/workspaces/cv-remove-bg/output/`
+
 ### Option 2: Local Installation
 
 1. Clone or download this repository
@@ -139,6 +144,9 @@ python background_removal.py
 ```bash
 # Process a single image
 python background_removal.py --single path/to/image.jpg
+
+# Process images from your Pictures folder
+python background_removal.py --input /home/vscode/Pictures --output output
 
 # Custom input/output directories
 python background_removal.py --input my_images --output results
