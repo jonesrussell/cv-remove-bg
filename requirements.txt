@@ -1,4 +1,4 @@
-opencv-python>=4.8.0
+opencv-python-headless>=4.8.0
 numpy>=1.21.0
 tqdm>=4.64.0
 pathlib2>=2.3.0; python_version < "3.4"

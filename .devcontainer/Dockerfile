@@ -18,6 +18,15 @@ RUN apt-get update && apt-get install -y \
     libxext6 \
     libxrender-dev \
     libgomp1 \
+    # OpenGL libraries (fixes libGL.so.1 error)
+    libgl1-mesa-glx \
+    libgl1-mesa-dri \
+    libx11-6 \
+    libgthread-2.0-0 \
+    libgtk-3-0 \
+    libgdk-pixbuf2.0-0 \
+    libxss1 \
+    libgconf-2-4 \
     # Build tools
     build-essential \
     # Git and other utilities
@@ -26,8 +35,6 @@ RUN apt-get update && apt-get install -y \
     wget \
     # Jupyter dependencies
     libfontconfig1 \
-    libxrender1 \
-    libgl1-mesa-glx \
     # Additional utilities
     vim \
     nano \
@@ -56,6 +63,7 @@ COPY requirements.txt .
 RUN pip install --upgrade pip \
     && pip install -r requirements.txt \
     && pip install \
+        opencv-python-headless \
         jupyter \
         jupyterlab \
         notebook \
