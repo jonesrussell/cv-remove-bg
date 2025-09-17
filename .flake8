@@ -1,0 +1,21 @@
+[flake8]
+max-line-length = 88
+extend-exclude = 
+    venv,
+    .venv,
+    site-packages,
+    lib/python*,
+    .eggs,
+    .git,
+    .hg,
+    .mypy_cache,
+    .tox,
+    _build,
+    buck-out,
+    build,
+    dist,
+    images,
+    output
+ignore = 
+    E203,
+    W503
