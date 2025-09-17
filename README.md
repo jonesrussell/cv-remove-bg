@@ -13,12 +13,35 @@ A powerful tool for automatically removing backgrounds from images using OpenCV'
 
 ## Installation
 
-1. Clone or download this repository
-2. Install required dependencies:
+### Option 1: Devcontainer (Recommended)
 
-```bash
-pip install -r requirements.txt
-```
+The easiest way to get started is using the included devcontainer setup:
+
+1. **Install Prerequisites**:
+   - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+   - [VS Code](https://code.visualstudio.com/)
+   - [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+
+2. **Open in Devcontainer**:
+   - Clone this repository
+   - Open in VS Code
+   - Press `Ctrl+Shift+P` → "Dev Containers: Reopen in Container"
+   - Wait for the container to build (first time: ~2-3 minutes)
+
+3. **You're Ready!** All dependencies are pre-installed and configured.
+
+### Option 2: Local Installation
+
+1. Clone or download this repository
+2. Create a virtual environment:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+3. Install required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 ## Quick Start
 
@@ -80,7 +103,13 @@ cv-remove-bg/
 ├── background_removal.py      # Command-line script
 ├── background_removal.ipynb   # Jupyter notebook
 ├── requirements.txt           # Python dependencies
-└── README.md                  # This file
+├── setup.py                   # Package setup script
+├── .devcontainer/            # Devcontainer configuration
+│   ├── devcontainer.json     # Devcontainer settings
+│   ├── Dockerfile           # Custom Docker image
+│   └── README.md            # Devcontainer documentation
+├── .gitignore                # Git ignore rules
+└── README.md                 # This file
 ```
 
 ## How It Works
